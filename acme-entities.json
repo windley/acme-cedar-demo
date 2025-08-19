@@ -1,0 +1,78 @@
+{
+  "entityList": [
+    {
+      "identifier": { "entityType": "ACME::Employee", "entityId": "alice" },
+      "attributes": {
+        "department": { "string": "Engineering" },
+        "on_call": { "boolean": true },
+        "manager": { "entityIdentifier": { "entityType": "ACME::Employee", "entityId": "carol" } }
+      }
+    },
+    {
+      "identifier": { "entityType": "ACME::Employee", "entityId": "bob" },
+      "attributes": {
+        "department": { "string": "Engineering" },
+        "on_call": { "boolean": false },
+        "manager": { "entityIdentifier": { "entityType": "ACME::Employee", "entityId": "carol" } }
+      },
+      "parents": [
+        { "entityType": "ACME::Team", "entityId": "doc-q3-employee-readers" }
+      ]
+    },
+    {
+      "identifier": { "entityType": "ACME::Employee", "entityId": "carol" },
+      "attributes": {
+        "department": { "string": "Engineering" },
+        "on_call": { "boolean": false }
+      }
+    },
+    {
+      "identifier": { "entityType": "ACME::Employee", "entityId": "dan" },
+      "attributes": {
+        "department": { "string": "Legal" },
+        "on_call": { "boolean": false }
+      }
+    },
+
+    {
+      "identifier": { "entityType": "ACME::Customer", "entityId": "kate" },
+      "parents": [
+        { "entityType": "ACME::Team", "entityId": "custco-readers" }
+      ]
+    },
+    {
+      "identifier": { "entityType": "ACME::Customer", "entityId": "jack" },
+      "parents": [
+        { "entityType": "ACME::Team", "entityId": "custco-readers" }
+      ]
+    },
+
+    {
+      "identifier": { "entityType": "ACME::Team", "entityId": "doc-q3-employee-readers" },
+      "attributes": {
+        "name": { "string": "Q3 Plan Employee Readers" }
+      }
+    },
+    {
+      "identifier": { "entityType": "ACME::Team", "entityId": "custco-readers" },
+      "attributes": {
+        "name": { "string": "CustCo Readers" }
+      }
+    },
+
+    {
+      "identifier": { "entityType": "ACME::Document", "entityId": "q3-plan" },
+      "attributes": {
+        "owner": { "entityIdentifier": { "entityType": "ACME::Employee", "entityId": "alice" } },
+        "classification": { "string": "confidential" },
+        "delegatable": { "boolean": true },
+        "employee_readers_team": {
+          "entityIdentifier": { "entityType": "ACME::Team", "entityId": "doc-q3-employee-readers" }
+        },
+        "customer_readers_team": {
+          "entityIdentifier": { "entityType": "ACME::Team", "entityId": "custco-readers" }
+        }
+      }
+    }
+  ]
+}

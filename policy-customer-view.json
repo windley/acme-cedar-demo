@@ -1,0 +1,6 @@
+{
+  "static": {
+    "description": "Customer view policy",
+    "statement": "permit(\n  principal is ACME::Customer,\n  action == ACME::Action::\"doc:view\",\n  resource is ACME::Document\n)\nwhen {\n  principal in resource.customer_readers_team\n};"
+  }
+}

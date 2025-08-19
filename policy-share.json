@@ -1,0 +1,6 @@
+{
+  "static": {
+    "description": "Employees can share if delegatable",
+    "statement": "// Non-owner delegates: employees on the employee_readers_team may share if the doc is delegatable\npermit(\n  principal is ACME::Employee,\n  action == ACME::Action::\"doc:share\",\n  resource is ACME::Document\n)\nwhen {\n  resource.delegatable == true\n  && principal in resource.employee_readers_team\n};"
+  }
+}

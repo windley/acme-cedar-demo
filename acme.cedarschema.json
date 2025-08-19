@@ -1,0 +1,80 @@
+{
+  "ACME": {
+    "entityTypes": {
+      "Employee": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "department": { "type": "String" },
+            "on_call":     { "type": "Boolean" },
+            "manager":     { "type": "Entity", "name": "Employee" }
+          }
+        }
+      },
+      "Customer": {},
+      "Team": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "name": { "type": "String" }
+          }
+        }
+      },
+      "Document": {
+        "shape": {
+          "type": "Record",
+          "attributes": {
+            "owner":                 { "type": "Entity", "name": "Employee" },
+            "classification":        { "type": "String" },
+            "delegatable":           { "type": "Boolean" },
+            "employee_readers_team": { "type": "Entity", "name": "Team" },
+            "customer_readers_team": { "type": "Entity", "name": "Team" }
+          }
+        }
+      }
+    },
+    "actions": {
+      "doc:view": {
+        "appliesTo": {
+          "principalTypes": ["Employee", "Customer"],
+          "resourceTypes":  ["Document"],
+          "context":        { "type": "context" }
+        }
+      },
+      "doc:edit": {
+        "appliesTo": {
+          "principalTypes": ["Employee"],
+          "resourceTypes":  ["Document"],
+            "context":      { "type": "context" }
+        }
+      },
+      "doc:share": {
+        "appliesTo": {
+          "principalTypes": ["Employee"],
+          "resourceTypes":  ["Document"],
+            "context":      { "type": "context" }
+        }
+      }
+    },
+    "commonTypes": {
+      "context": {
+        "type": "Record",
+        "attributes": {
+          "device": {
+            "type": "Record",
+            "attributes": {
+              "managed": { "type": "Boolean" }
+            }
+          },
+          "time": {
+            "type": "Record",
+            "attributes": {
+              "hour":    { "type": "Long" },
+              "weekday": { "type": "String" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

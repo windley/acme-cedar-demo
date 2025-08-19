@@ -1,0 +1,6 @@
+{
+  "static": {
+    "description": "Global forbid for unmanaged devices",
+    "statement": "// Global guardrail: employees on unmanaged devices are forbidden for any document action\nforbid(\n  principal is ACME::Employee,\n  action,\n  resource is ACME::Document\n)\nwhen { context.device.managed == false };"
+  }
+}

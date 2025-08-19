@@ -1,0 +1,6 @@
+{
+  "static": {
+    "description": "Owner baseline: all actions on owned docs",
+    "statement": "// Owner can do all defined document actions\npermit(\n  principal is ACME::Employee,\n  action in [ ACME::Action::\"doc:view\",\n              ACME::Action::\"doc:edit\",\n              ACME::Action::\"doc:share\" ],\n  resource is ACME::Document\n)\nwhen { resource.owner == principal };"
+  }
+}

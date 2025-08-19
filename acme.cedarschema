@@ -1,0 +1,42 @@
+// schema for ACME Customer Collaboration Platform
+namespace ACME
+
+entity Employee {
+    attributes {
+        department: String,
+        on_call: Bool,
+        manager: Employee
+    }
+}
+
+entity Customer {}
+
+entity Team {
+    attributes {
+        name: String
+    }
+}
+
+entity Document {
+    attributes {
+        owner: Employee,
+        classification: String,
+        delegatable: Bool,
+        employee_readers_team: Team,
+        customer_readers_team: Team
+    }
+}
+
+action "doc:view"
+    appliesTo { principal: [Employee, Customer], resource: Document }
+
+action "doc:edit"
+    appliesTo { principal: Employee, resource: Document }
+
+action "doc:share"
+    appliesTo { principal: Employee, resource: Document }
+
+context {
+    device: { managed: Bool },
+    time:   { hour: Long, weekday: String }
+}
