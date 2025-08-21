@@ -22,3 +22,7 @@ These examples are designed to accompany the chapters on **Implementing Policies
      --entities file://acme-entities.json
      
 The response will indicate whether the request is ALLOW or DENY, based on the Cedar policies and entity relationships defined in this repo.
+
+## Jupyter Notebook
+
+A Jupyter Notebook is included for running the commmand from the Appendix. 
